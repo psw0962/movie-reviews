@@ -1,0 +1,35 @@
+{
+  "name": "movie-reviews",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build"
+  },
+  "author": "Nick",
+  "license": "ISC",
+  "dependencies": {
+    "@next/bundle-analyzer": "^12.0.7",
+    "axios": "^0.24.0",
+    "babel-plugin-styled-components": "^2.0.2",
+    "cross-env": "^7.0.3",
+    "next": "^12.0.7",
+    "next-redux-wrapper": "^7.0.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-saga": "^1.1.3",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.4.1",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "prettier": "^2.5.1"
+  }
+}
