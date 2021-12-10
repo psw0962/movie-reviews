@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { TMDB_KEY } from '../config';
+import AppLayout from '../components/AppLayout';
+import GlobalStyle from '../styles/GlobalStyle';
 
 const Home = () => {
   const testReq = async () => {
@@ -9,9 +11,14 @@ const Home = () => {
     );
     console.log(req.data);
   };
+
   testReq();
-  console.log('asd');
-  return <div>asdasdas</div>;
+
+  return (
+    <AppLayout>
+      <div>home</div>
+    </AppLayout>
+  );
 };
 
 export default Home;
