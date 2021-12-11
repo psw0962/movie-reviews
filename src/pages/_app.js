@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import wrapper from '../store/configureStore';
 
 const MovieReviews = ({ Component }) => (
   <>
@@ -11,4 +12,4 @@ const MovieReviews = ({ Component }) => (
   </>
 );
 
-export default MovieReviews;
+export default wrapper.withRedux(MovieReviews);

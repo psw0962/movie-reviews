@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import * as Font from './common/Font';
+import * as Font from '../components/common/Font';
 import { useRouter } from 'next/router';
 import GlobalStyle from '../styles/GlobalStyle';
 

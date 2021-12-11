@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import AppLayout from '../../components/AppLayout';
+import AppLayout from '../../templates/AppLayout';
 
 const WishList = () => {
   return (
