@@ -10,7 +10,7 @@ export const initialState = {
 };
 
 export const LOADMOVIE_REQUEST = 'LOADMOVIE_REQUEST';
-export const LOADMOVIE_SUCCESS = 'LOADMOVIE_REQUEST';
+export const LOADMOVIE_SUCCESS = 'LOADMOVIE_SUCCESS';
 export const LOADMOVIE_FAILURE = 'LOADMOVIE_FAILURE';
 
 const reducer = (state = initialState, action) => {
@@ -26,7 +26,8 @@ const reducer = (state = initialState, action) => {
       case LOADMOVIE_SUCCESS:
         draft.loadMovieLoading = false;
         draft.loadMovieDone = true;
-        draft.data.unshift(action.data.results);
+        // draft.data = action.data.reuslts;
+        draft.data.push(action.data);
         break;
 
       case LOADMOVIE_FAILURE:

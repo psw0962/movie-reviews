@@ -8,17 +8,27 @@ const Home = () => {
   const { data } = useSelector((state) => state.movie);
 
   useEffect(() => {
-    console.log('effect');
-    // dispatch({
-    //   type: LOADMOVIE_REQUEST,
-    // });
-    // console.log(data);
+    dispatch({
+      type: LOADMOVIE_REQUEST,
+    });
   }, []);
 
   return (
-    <AppLayout>
-      <div>home</div>
-    </AppLayout>
+    <>
+      <AppLayout>
+        <div>
+          {data[0] &&
+            data[0].map((v, idx) => {
+              return (
+                <>
+                  <div key={idx}>{v.title}</div>
+                  <img src={`https://image.tmdb.org/t/p/w200${v.poster_path}`} />
+                </>
+              );
+            })}
+        </div>
+      </AppLayout>
+    </>
   );
 };
 
