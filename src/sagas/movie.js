@@ -3,12 +3,13 @@ import { all, fork, call, put, takeLatest } from '@redux-saga/core/effects';
 import { LOADMOVIE_REQUEST, LOADMOVIE_SUCCESS, LOADMOVIE_FAILURE } from '../reducers/movie';
 import { TMDB_KEY } from '../config';
 
-const getTopRatedMovie = `https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&page=1`;
+const getTopRatedMovie = `https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=ko&page=1`;
+const getPopularMovie = `https://api.themoviedb.org/3/movie/popular?api_key=${TMDB_KEY}&language=ko&page=1`;
 const searchMovie = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&language=en-US&page=1&include_adult=false&query=harry`;
 
 // loadmovie
 function loadMovieAPI() {
-  return axios.get(getTopRatedMovie);
+  return axios.get(getPopularMovie);
 }
 
 function* loadMovie() {

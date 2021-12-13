@@ -26,7 +26,6 @@ const reducer = (state = initialState, action) => {
       case LOADMOVIE_SUCCESS:
         draft.loadMovieLoading = false;
         draft.loadMovieDone = true;
-        // draft.data = action.data.reuslts;
         draft.data.push(action.data);
         break;
 

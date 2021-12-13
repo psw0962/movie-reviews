@@ -11,22 +11,20 @@ const AppLayout = ({ children }) => {
     <>
       <GlobalStyle />
 
-      <div>
-        <Header>
-          <Container>
-            <div>
-              <FontSize25 onClick={() => router.push('/')}>영화리뷰</FontSize25>
-            </div>
+      <Header>
+        <HeaderInnerBox>
+          <div>
+            <FontSize25 onClick={() => router.push('/')}>영화리뷰</FontSize25>
+          </div>
 
-            <InnerBox>
-              <FontSize25 onClick={() => router.push('/wishlist')}>찜 목록</FontSize25>
-              <FontSize25 onClick={() => router.push('/watchedlist')}>시청 목록</FontSize25>
-            </InnerBox>
-          </Container>
-        </Header>
+          <InnerBox>
+            <FontSize25 onClick={() => router.push('/wishlist')}>찜 목록</FontSize25>
+            <FontSize25 onClick={() => router.push('/watchedlist')}>시청 목록</FontSize25>
+          </InnerBox>
+        </HeaderInnerBox>
+      </Header>
 
-        <div>{children}</div>
-      </div>
+      <ChildrenBox>{children}</ChildrenBox>
     </>
   );
 };
@@ -41,18 +39,25 @@ const Header = styled.div`
   background-color: #042541;
   height: 60px;
   padding: 0px 20px;
+  margin-bottom: 60px;
 `;
 
-const Container = styled.div`
+const HeaderInnerBox = styled.div`
   display: flex;
   justify-content: space-between;
 
-  width: 1200px;
+  width: 80%;
 `;
 
 const InnerBox = styled.div`
   display: flex;
   gap: 50px;
+`;
+
+const ChildrenBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const FontSize25 = styled(Font.FontSize25)`
