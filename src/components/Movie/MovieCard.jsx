@@ -36,10 +36,11 @@ const MovieInfoBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 5px;
 `;
 
 const ImgBox = styled.img`
+  width: 200px;
+  height: 300px;
   border-radius: 10px;
-  object-fit: scale-down;
+  object-fit: cover;
 `;

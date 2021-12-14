@@ -20,15 +20,15 @@ const Home = () => {
   return (
     <>
       <AppLayout>
-        <div style={{ display: 'flex', flexDirection: 'column', width: '79%' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', width: '77%' }}>
           <FontSize22>인기영화 TOP20</FontSize22>
 
-          <PopularBox>
+          <Wrap>
             {data[0] &&
               data[0].map((value, idx) => {
                 return <MovieCard key={idx} value={value} />;
               })}
-          </PopularBox>
+          </Wrap>
         </div>
       </AppLayout>
     </>
@@ -42,8 +42,12 @@ const FontSize22 = styled(Font.FontSize22)`
   font-weight: bold;
 `;
 
-const PopularBox = styled.div`
+const Wrap = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 10px;
   overflow: scroll;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
