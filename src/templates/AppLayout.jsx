@@ -39,7 +39,7 @@ const Header = styled.div`
   background-color: #042541;
   height: 60px;
   padding: 0px 20px;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 `;
 
 const HeaderInnerBox = styled.div`
@@ -55,9 +55,8 @@ const InnerBox = styled.div`
 `;
 
 const ChildrenBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 const FontSize25 = styled(Font.FontSize25)`

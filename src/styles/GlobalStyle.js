@@ -4,6 +4,10 @@ import reset from 'styled-reset';
 const GlobalStyle = createGlobalStyle`
     ${reset};
 
+    * {
+        box-sizing: border-box;
+    }
+
     html {
         font-family: Noto Sans;
         font-size: 10px;
