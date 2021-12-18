@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import AppLayout from '../../templates/AppLayout';
+import { Wrapper } from '../../components/common/Wrapper';
 
 const WishList = () => {
   return (
     <AppLayout>
-      <div>wish list</div>
+      <Wrapper>
+        <div>wish list</div>
+      </Wrapper>
     </AppLayout>
   );
 };

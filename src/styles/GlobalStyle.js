@@ -5,29 +5,23 @@ const GlobalStyle = createGlobalStyle`
     ${reset};
 
     * {
+        margin: 0;
+        padding: 0;
         box-sizing: border-box;
     }
 
-    html {
+    html, body {
+        height: 100%;
         font-family: Noto Sans;
         font-size: 10px;
 
-        @media screen and (max-width: 767px) {
+        @media screen and (max-width: 765px) {
             font-size: 9px;
         }
-    }
 
-    body {
-        margin: 0;
-        padding: 0;
-    }
-
-    p {
-        margin: 0;
-    }
-
-    input {
-        padding: 0;
+        @media screen and (max-width: 375px) {
+            font-size: 7px;
+        }
     }
 `;
 

@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import Slider from 'react-slick';
 import AppLayout from '../templates/AppLayout';
 import MovieCard from '../components/Movie/MovieCard';
 import * as Font from '../components/common/Font';
-import Slider from 'react-slick';
+import { Wrapper } from '../components/common/Wrapper';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { GETPOPULAR_REQUEST, GETTOPRATED_REQUEST } from '../reducers/movie';
@@ -32,52 +33,52 @@ const Home = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
+          slidesToShow: 4,
+          slidesToScroll: 4,
           dots: true,
+          infinite: false,
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          initialSlide: 3,
+          infinite: false,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: false,
         },
       },
     ],
   };
 
   return (
-    <>
-      <AppLayout>
-        <div style={{ display: 'flex', flexDirection: 'column', padding: '5%' }}>
-          <FontSize22>인기영화 TOP20</FontSize22>
-          <CustomSlider {...settings}>
-            {getPopularData[0] &&
-              getPopularData[0].map((value, idx) => {
-                return <MovieCard key={idx} value={value} />;
-              })}
-          </CustomSlider>
+    <AppLayout>
+      <Wrapper>
+        <FontSize22>인기영화 TOP20</FontSize22>
+        <CustomSlider {...settings}>
+          {getPopularData[0] &&
+            getPopularData[0].map((value, idx) => {
+              return <MovieCard key={idx} value={value} />;
+            })}
+        </CustomSlider>
 
-          <FontSize22 style={{ marginTop: 60 }}>높은 별점 순</FontSize22>
-          <CustomSlider {...settings}>
-            {getTopRatedData[0] &&
-              getTopRatedData[0].map((value, idx) => {
-                return <MovieCard key={idx} value={value} />;
-              })}
-          </CustomSlider>
-        </div>
-      </AppLayout>
-    </>
+        <FontSize22 style={{ marginTop: 60 }}>높은 별점 순</FontSize22>
+        <CustomSlider {...settings}>
+          {getTopRatedData[0] &&
+            getTopRatedData[0].map((value, idx) => {
+              return <MovieCard key={idx} value={value} />;
+            })}
+        </CustomSlider>
+      </Wrapper>
+    </AppLayout>
   );
 };
 
