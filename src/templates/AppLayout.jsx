@@ -39,7 +39,6 @@ const Header = styled.div`
   background-color: #042541;
   height: 60px;
   padding: 0px 20px;
-  margin-bottom: 30px;
 `;
 
 const HeaderInnerBox = styled.div`

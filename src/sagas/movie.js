@@ -1,6 +1,13 @@
 import axios from 'axios';
 import { all, fork, call, put, takeLatest } from '@redux-saga/core/effects';
-import { LOADMOVIE_REQUEST, LOADMOVIE_SUCCESS, LOADMOVIE_FAILURE } from '../reducers/movie';
+import {
+  GETPOPULAR_REQUEST,
+  GETPOPULAR_SUCCESS,
+  GETPOPULAR_FAILURE,
+  GETTOPRATED_REQUEST,
+  GETTOPRATED_SUCCESS,
+  GETTOPRATED_FAILURE,
+} from '../reducers/movie';
 import { TMDB_KEY } from '../config';
 
 const getTopRatedMovie = `https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=ko&page=1`;
@@ -8,32 +15,57 @@ const getPopularMovie = `https://api.themoviedb.org/3/movie/popular?api_key=${TM
 const searchMovie = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&language=en-US&page=1&include_adult=false&query=harry`;
 
 // loadmovie
-function loadMovieAPI() {
+function getPopularAPI() {
   return axios.get(getPopularMovie);
 }
 
-function* loadMovie() {
+function* getPopular() {
   try {
-    const result = yield call(loadMovieAPI);
+    const result = yield call(getPopularAPI);
     yield put({
-      type: LOADMOVIE_SUCCESS,
+      type: GETPOPULAR_SUCCESS,
       data: result.data.results,
     });
   } catch (err) {
     console.log(err);
     yield put({
-      type: LOADMOVIE_FAILURE,
+      type: GETPOPULAR_FAILURE,
+      data: err.response.data,
+    });
+  }
+}
+
+// gettoprated
+function getTopRatedAPI() {
+  return axios.get(getTopRatedMovie);
+}
+
+function* getTopRated() {
+  try {
+    const result = yield call(getTopRatedAPI);
+    yield put({
+      type: GETTOPRATED_SUCCESS,
+      data: result.data.results,
+    });
+  } catch (err) {
+    console.log(err);
+    yield put({
+      type: GETTOPRATED_FAILURE,
       data: err.response.data,
     });
   }
 }
 
 // take
-function* watchLoadMovie() {
-  yield takeLatest(LOADMOVIE_REQUEST, loadMovie);
+function* watchGetPopualr() {
+  yield takeLatest(GETPOPULAR_REQUEST, getPopular);
+}
+
+function* watchGetTopRated() {
+  yield takeLatest(GETTOPRATED_REQUEST, getTopRated);
 }
 
 // all
 export default function* movieSaga() {
-  yield all([fork(watchLoadMovie)]);
+  yield all([fork(watchGetPopualr), fork(watchGetTopRated)]);
 }

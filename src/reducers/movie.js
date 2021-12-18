@@ -1,37 +1,65 @@
 import produce from 'immer';
 
 export const initialState = {
-  data: [],
+  getPopularData: [],
+  getTopRatedData: [],
 
-  // loadmovie
-  loadMovieLoading: false,
-  loadMovieDone: false,
-  loadMovieError: null,
+  // getPopular
+  getPopularLoading: false,
+  getPopularDone: false,
+  getPopularError: null,
+
+  // gettoprated
+  getTopRatedLoading: false,
+  getTopRatedDone: false,
+  getTopRatedError: null,
 };
 
-export const LOADMOVIE_REQUEST = 'LOADMOVIE_REQUEST';
-export const LOADMOVIE_SUCCESS = 'LOADMOVIE_SUCCESS';
-export const LOADMOVIE_FAILURE = 'LOADMOVIE_FAILURE';
+export const GETPOPULAR_REQUEST = 'GETPOPULAR_REQUEST';
+export const GETPOPULAR_SUCCESS = 'GETPOPULAR_SUCCESS';
+export const GETPOPULAR_FAILURE = 'GETPOPULAR_FAILURE';
+
+export const GETTOPRATED_REQUEST = 'GETTOPRATED_REQUEST';
+export const GETTOPRATED_SUCCESS = 'GETTOPRATED_SUCCESS';
+export const GETTOPRATED_FAILURE = 'GETTOPRATED_FAILURE';
 
 const reducer = (state = initialState, action) => {
   return produce(state, (draft) => {
     switch (action.type) {
-      // loadmovie
-      case LOADMOVIE_REQUEST:
-        draft.loadMovieLoading = true;
-        draft.loadMovieDone = null;
-        draft.loadMovieError = false;
+      // getPopualr
+      case GETPOPULAR_REQUEST:
+        draft.getPopualrLoading = true;
+        draft.getPopualrDone = null;
+        draft.getPopualrError = false;
         break;
 
-      case LOADMOVIE_SUCCESS:
-        draft.loadMovieLoading = false;
-        draft.loadMovieDone = true;
-        draft.data.push(action.data);
+      case GETPOPULAR_SUCCESS:
+        draft.getPopualrLoading = false;
+        draft.getPopualrDone = true;
+        draft.getPopularData.push(action.data);
         break;
 
-      case LOADMOVIE_FAILURE:
-        draft.loadMovieLoading = false;
-        draft.loadMovieError = action.error;
+      case GETPOPULAR_FAILURE:
+        draft.getPopualrLoading = false;
+        draft.getPopualrError = action.error;
+        break;
+
+      // getTopRated
+      case GETTOPRATED_REQUEST:
+        draft.getTopRatedLoading = true;
+        draft.getTopRatedDone = null;
+        draft.getTopRatedError = false;
+        break;
+
+      case GETTOPRATED_SUCCESS:
+        draft.getTopRatedLoading = false;
+        draft.getTopRatedDone = true;
+        draft.getTopRatedData.push(action.data);
+        break;
+
+      case GETTOPRATED_FAILURE:
+        draft.getTopRatedLoading = false;
+        draft.getTopRatedError = action.error;
         break;
 
       default:

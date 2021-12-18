@@ -6,15 +6,19 @@ import * as Font from '../components/common/Font';
 import Slider from 'react-slick';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { LOADMOVIE_REQUEST } from '../reducers/movie';
+import { GETPOPULAR_REQUEST, GETTOPRATED_REQUEST } from '../reducers/movie';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.movie);
+  const { getPopularData, getTopRatedData } = useSelector((state) => state.movie);
 
   useEffect(() => {
     dispatch({
-      type: LOADMOVIE_REQUEST,
+      type: GETPOPULAR_REQUEST,
+    });
+
+    dispatch({
+      type: GETTOPRATED_REQUEST,
     });
   }, []);
 
@@ -57,10 +61,17 @@ const Home = () => {
       <AppLayout>
         <div style={{ display: 'flex', flexDirection: 'column', padding: '5%' }}>
           <FontSize22>인기영화 TOP20</FontSize22>
-
           <CustomSlider {...settings}>
-            {data[0] &&
-              data[0].map((value, idx) => {
+            {getPopularData[0] &&
+              getPopularData[0].map((value, idx) => {
+                return <MovieCard key={idx} value={value} />;
+              })}
+          </CustomSlider>
+
+          <FontSize22 style={{ marginTop: 60 }}>높은 별점 순</FontSize22>
+          <CustomSlider {...settings}>
+            {getTopRatedData[0] &&
+              getTopRatedData[0].map((value, idx) => {
                 return <MovieCard key={idx} value={value} />;
               })}
           </CustomSlider>
