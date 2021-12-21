@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import * as Font from '../components/common/Font';
 import { useRouter } from 'next/router';
 import GlobalStyle from '../styles/GlobalStyle';
+import SearchBar from '../components/SearchBar/SearchBar';
 
 const AppLayout = ({ children }) => {
   const router = useRouter();
@@ -17,10 +18,7 @@ const AppLayout = ({ children }) => {
             <FontSize25 onClick={() => router.push('/')}>Movie Reviews</FontSize25>
           </div>
 
-          <Wrapper>
-            <SearchIcon src={'search.svg'} />
-            <SearchBox placeholder="보고싶은 영화를 검색해 보세요." />
-          </Wrapper>
+          <SearchBar />
 
           <InnerBox>
             <FontSize25 onClick={() => router.push('/wishlist')}>WishList</FontSize25>
@@ -76,33 +74,6 @@ const FontSize25 = styled(Font.FontSize25)`
     color: #d4d4d4;
     transition: ease-in-out 0.2s;
   }
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: #f5f5f7;
-  width: 40%;
-  padding: 5px;
-`;
-
-const SearchBox = styled.input`
-  width: 100%;
-  height: 33px;
-  border: none;
-  background-color: #f5f5f7;
-  outline: none;
-  font-size: 1.9rem;
-
-  @media screen and (max-width: 765px) {
-    ::placeholder {
-      color: transparent;
-    }
-  }
-`;
-
-const SearchIcon = styled.img`
-  margin: 0px 10px;
 `;
 
 const Footer = styled.div`
