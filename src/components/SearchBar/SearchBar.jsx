@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
+import useInput from '../../hooks/useInput';
+import { useDispatch } from 'react-redux';
+import { SEARCHMOVIE_REQUEST } from '../../reducers/movie';
+import { useRouter } from 'next/router';
 
 const SearchBar = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [value, setValue, onChangeValue] = useInput('');
+
+  const onSubmitSearch = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch({
+        type: SEARCHMOVIE_REQUEST,
+        data: { text: value },
+      });
+
+      router.push('/search');
+    },
+    [value]
+  );
+
   return (
     <Wrapper>
-      <SearchIcon src={'search.svg'} />
-      <SearchBox placeholder="보고싶은 영화를 검색해 보세요." />
+      <Form onSubmit={onSubmitSearch}>
+        <SearchIcon src={'search.svg'} />
+        <SearchBox placeholder="보고싶은 영화를 검색해 보세요." onChange={onChangeValue} />
+      </Form>
     </Wrapper>
   );
 };
@@ -18,6 +41,11 @@ const Wrapper = styled.div`
   background-color: #f5f5f7;
   width: 40%;
   padding: 5px;
+`;
+
+const Form = styled.form`
+  width: 100%;
+  display: inherit;
 `;
 
 const SearchBox = styled.input`

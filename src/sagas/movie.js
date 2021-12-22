@@ -7,12 +7,14 @@ import {
   GETTOPRATED_REQUEST,
   GETTOPRATED_SUCCESS,
   GETTOPRATED_FAILURE,
+  SEARCHMOVIE_REQUEST,
+  SEARCHMOVIE_SUCCESS,
+  SEARCHMOVIE_FAILURE,
 } from '../reducers/movie';
 import { TMDB_KEY } from '../config';
 
 const getTopRatedMovie = `https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=ko&page=1`;
 const getPopularMovie = `https://api.themoviedb.org/3/movie/popular?api_key=${TMDB_KEY}&language=ko&page=1`;
-const searchMovie = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&language=en-US&page=1&include_adult=false&query=harry`;
 
 // loadmovie
 function getPopularAPI() {
@@ -56,6 +58,29 @@ function* getTopRated() {
   }
 }
 
+// searchmovie
+function searchMovieAPI(data) {
+  // console.log(data);
+  const searchMovie = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&language=en-US&page=1&include_adult=false&query=${data.text}`;
+  return axios.get(searchMovie);
+}
+
+function* searchMovie(action) {
+  try {
+    const result = yield call(searchMovieAPI, action.data);
+    yield put({
+      type: SEARCHMOVIE_SUCCESS,
+      data: result.data.results,
+    });
+  } catch (err) {
+    console.log(err);
+    yield put({
+      type: SEARCHMOVIE_FAILURE,
+      data: err.response.data,
+    });
+  }
+}
+
 // take
 function* watchGetPopualr() {
   yield takeLatest(GETPOPULAR_REQUEST, getPopular);
@@ -65,7 +90,11 @@ function* watchGetTopRated() {
   yield takeLatest(GETTOPRATED_REQUEST, getTopRated);
 }
 
+function* watchSearchMovie() {
+  yield takeLatest(SEARCHMOVIE_REQUEST, searchMovie);
+}
+
 // all
 export default function* movieSaga() {
-  yield all([fork(watchGetPopualr), fork(watchGetTopRated)]);
+  yield all([fork(watchGetPopualr), fork(watchGetTopRated), fork(watchSearchMovie)]);
 }

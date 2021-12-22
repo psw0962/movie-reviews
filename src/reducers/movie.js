@@ -3,6 +3,7 @@ import produce from 'immer';
 export const initialState = {
   getPopularData: [],
   getTopRatedData: [],
+  searchMovieData: [],
 
   // getPopular
   getPopularLoading: false,
@@ -13,6 +14,11 @@ export const initialState = {
   getTopRatedLoading: false,
   getTopRatedDone: false,
   getTopRatedError: null,
+
+  // searchmovie
+  searchmovieLoading: false,
+  searchmovieDone: false,
+  searchmovieError: null,
 };
 
 export const GETPOPULAR_REQUEST = 'GETPOPULAR_REQUEST';
@@ -22,6 +28,10 @@ export const GETPOPULAR_FAILURE = 'GETPOPULAR_FAILURE';
 export const GETTOPRATED_REQUEST = 'GETTOPRATED_REQUEST';
 export const GETTOPRATED_SUCCESS = 'GETTOPRATED_SUCCESS';
 export const GETTOPRATED_FAILURE = 'GETTOPRATED_FAILURE';
+
+export const SEARCHMOVIE_REQUEST = 'SEARCHMOVIE_REQUEST';
+export const SEARCHMOVIE_SUCCESS = 'SEARCHMOVIE_SUCCESS';
+export const SEARCHMOVIE_FAILURE = 'SEARCHMOVIE_FAILURE';
 
 const reducer = (state = initialState, action) => {
   return produce(state, (draft) => {
@@ -60,6 +70,24 @@ const reducer = (state = initialState, action) => {
       case GETTOPRATED_FAILURE:
         draft.getTopRatedLoading = false;
         draft.getTopRatedError = action.error;
+        break;
+
+      // searchmovie
+      case SEARCHMOVIE_REQUEST:
+        draft.searchmovieLoading = true;
+        draft.searchmovieDone = null;
+        draft.searchmovieError = false;
+        break;
+
+      case SEARCHMOVIE_SUCCESS:
+        draft.searchMovieLoading = false;
+        draft.searchMovieDone = true;
+        draft.searchMovieData.push(action.data);
+        break;
+
+      case SEARCHMOVIE_FAILURE:
+        draft.searchmovieLoading = false;
+        draft.searchmovieError = action.error;
         break;
 
       default:
