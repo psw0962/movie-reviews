@@ -64,5 +64,5 @@ const SearchBox = styled.input`
 `;
 
 const SearchIcon = styled.img`
-  margin: 0px 10px;
+  /* margin: 0px 10px; */
 `;
