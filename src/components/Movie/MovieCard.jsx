@@ -8,7 +8,7 @@ const MovieCard = ({ value }) => {
       <Wrapper>
         <ImgBox src={`https://image.tmdb.org/t/p/w200${value.poster_path}`} />
 
-        <FontSize15 style={{ fontWeight: 'bold' }}>{value.title}</FontSize15>
+        <FontSize15 style={{ fontWeight: 'bold', width: '70%' }}>{value.title}</FontSize15>
         <FontSize15>{value.release_date}</FontSize15>
         <FontSize15>평균 별점 : {value.vote_average}</FontSize15>
       </Wrapper>
@@ -32,12 +32,19 @@ const MovieCardBox = styled.div`
   justify-content: center;
   margin-top: 20px;
   cursor: pointer;
+
+  :hover {
+    transform: scale(1.1);
+    transition: ease-in-out 0.3s;
+  }
 `;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 200px;
+  height: 400px;
 `;
 
 const ImgBox = styled.img`
