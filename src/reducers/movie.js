@@ -82,6 +82,7 @@ const reducer = (state = initialState, action) => {
       case SEARCHMOVIE_SUCCESS:
         draft.searchMovieLoading = false;
         draft.searchMovieDone = true;
+        draft.searchMovieData = [];
         draft.searchMovieData.push(action.data);
         break;
 

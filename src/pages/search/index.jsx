@@ -9,9 +9,13 @@ const Search = () => {
   return (
     <AppLayout>
       <Wrapper>
-        {searchMovieData[0].map((v) => {
-          return <MovieCard key={v.id} value={v} />;
-        })}
+        {searchMovieData[0].length !== 0 ? (
+          searchMovieData[0].map((v) => {
+            return <MovieCard key={v.id} value={v} />;
+          })
+        ) : (
+          <div>검색결과가 없습니다.</div>
+        )}
       </Wrapper>
     </AppLayout>
   );
