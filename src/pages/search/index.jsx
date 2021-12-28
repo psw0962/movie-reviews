@@ -9,7 +9,7 @@ const Search = () => {
   return (
     <AppLayout>
       <Wrapper>
-        {searchMovieData[0].length !== 0 ? (
+        {searchMovieData[0] && searchMovieData[0].length !== 0 ? (
           searchMovieData[0].map((v) => {
             return <MovieCard key={v.id} value={v} />;
           })
