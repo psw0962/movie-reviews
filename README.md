@@ -9,6 +9,6 @@
 - 카테고리 별 영화정보를 쉽게 검색해 보세요!(예정)
 - 인기영화 순위를 차트로 쉽게 확인해 보세요!(예정)
 
-## skills
+## 🔧 skills
 
 - Frontend : React Hooks, styled-components, Redux, Redux-saga, next.js
