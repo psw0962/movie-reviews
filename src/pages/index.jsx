@@ -11,7 +11,7 @@ import { GETPOPULAR_REQUEST, GETTOPRATED_REQUEST } from '../reducers/movie';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { getPopularData, getTopRatedData } = useSelector((state) => state.movie);
+  const { getPopularData, getTopRatedData, getPopularLoading } = useSelector((state) => state.movie);
 
   useEffect(() => {
     dispatch({
@@ -61,23 +61,27 @@ const Home = () => {
 
   return (
     <AppLayout>
-      <Wrapper>
-        <FontSize22>인기영화 TOP20</FontSize22>
-        <CustomSlider {...settings}>
-          {getPopularData[0] &&
-            getPopularData[0].map((value, idx) => {
-              return <MovieCard key={idx} value={value} />;
-            })}
-        </CustomSlider>
+      {!getPopularLoading ? (
+        <Wrapper>
+          <FontSize22>인기영화 TOP20</FontSize22>
+          <CustomSlider {...settings}>
+            {getPopularData[0] &&
+              getPopularData[0].map((value, idx) => {
+                return <MovieCard key={idx} value={value} />;
+              })}
+          </CustomSlider>
 
-        <FontSize22 style={{ marginTop: 60 }}>높은 별점 순</FontSize22>
-        <CustomSlider {...settings}>
-          {getTopRatedData[0] &&
-            getTopRatedData[0].map((value, idx) => {
-              return <MovieCard key={idx} value={value} />;
-            })}
-        </CustomSlider>
-      </Wrapper>
+          <FontSize22 style={{ marginTop: 60 }}>높은 별점 순</FontSize22>
+          <CustomSlider {...settings}>
+            {getTopRatedData[0] &&
+              getTopRatedData[0].map((value, idx) => {
+                return <MovieCard key={idx} value={value} />;
+              })}
+          </CustomSlider>
+        </Wrapper>
+      ) : (
+        <div>loading...</div>
+      )}
     </AppLayout>
   );
 };
