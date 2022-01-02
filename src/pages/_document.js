@@ -22,7 +22,7 @@ export default class MyDocument extends Document {
         ),
       };
     } catch (err) {
-      console.log(err);
+      console.error(err);
     } finally {
       sheet.seal();
     }
