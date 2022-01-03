@@ -22,15 +22,17 @@ const MovieDetail = () => {
   };
 
   useEffect(() => {
+    // 최초 렌더링 시 api호출
     getDetailMovieDataAPI();
 
+    // 새로고침 시 데이터유지(로컬스토리지 사용)
     if (typeof window !== undefined) {
       const storedValue = localStorage.getItem('detailData');
-      console.log(storedValue);
       setDetailData(JSON.parse(storedValue));
     }
   }, []);
 
+  // detailData가 바뀔 때 마다 로컬스토리지에 데이터 저장
   useEffect(() => {
     window.localStorage.setItem('detailData', JSON.stringify(detailData));
   }, [detailData]);

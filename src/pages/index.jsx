@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import AppLayout from '../templates/AppLayout';
 import MovieCard from '../components/Movie/MovieCard';
+import Link from 'next/link';
 import * as Font from '../components/common/Font';
 import { Wrapper } from '../components/common/Wrapper';
 
@@ -66,16 +67,28 @@ const Home = () => {
           <FontSize22>인기영화 TOP20</FontSize22>
           <CustomSlider {...settings}>
             {getPopularData[0] &&
-              getPopularData[0].map((value, idx) => {
-                return <MovieCard key={idx} value={value} />;
+              getPopularData[0].map((value) => {
+                return (
+                  <Link key={value.id} href={`/moviedetail/${value.id}`}>
+                    <CustomAnchor>
+                      <MovieCard value={value} />
+                    </CustomAnchor>
+                  </Link>
+                );
               })}
           </CustomSlider>
 
           <FontSize22 style={{ marginTop: 60 }}>높은 별점 순</FontSize22>
           <CustomSlider {...settings}>
             {getTopRatedData[0] &&
-              getTopRatedData[0].map((value, idx) => {
-                return <MovieCard key={idx} value={value} />;
+              getTopRatedData[0].map((value) => {
+                return (
+                  <Link key={value.id} href={`/moviedetail/${value.id}`}>
+                    <CustomAnchor>
+                      <MovieCard value={value} />
+                    </CustomAnchor>
+                  </Link>
+                );
               })}
           </CustomSlider>
         </Wrapper>
@@ -98,4 +111,9 @@ const CustomSlider = styled(Slider)`
   .slick-next:before {
     color: #404040;
   }
+`;
+
+const CustomAnchor = styled.a`
+  text-decoration: none;
+  color: inherit;
 `;
