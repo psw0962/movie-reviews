@@ -67,7 +67,7 @@ const ChildrenBox = styled.div`
 
 const FontSize25 = styled(Font.FontSize25)`
   font-size: 2.5rem;
-  font-weight: 400;
+  font-weight: 600;
   cursor: pointer;
 
   :hover {

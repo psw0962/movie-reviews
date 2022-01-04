@@ -12,11 +12,11 @@ const Search = () => {
       {!getPopularLoading ? (
         <Wrapper>
           {searchMovieData[0] && searchMovieData[0].length !== 0 ? (
-            searchMovieData[0].map((v) => {
+            searchMovieData[0].map((value) => {
               return (
-                <Link key={v.id} href={`/moviedetail/${v.id}`}>
+                <Link key={value.id} href={`/moviedetail/${value.id}`}>
                   <CustomAnchor>
-                    <MovieCard value={v} />
+                    <MovieCard value={value} />
                   </CustomAnchor>
                 </Link>
               );
